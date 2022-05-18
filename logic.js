@@ -1,3 +1,19 @@
+/**
+ * logic.js
+ * 
+ * Archivo principal con la lógica de la simulación.
+ * 
+ * Instituto tecnológico de Costa Rica (TEC).
+ * Ingeniería en Computación.
+ * Curso de Análisis de Algoritmos.
+ * Profesor: Kenneth Obando.
+ * Estudiante: Hansol Rostrán.
+ */
+
+/**
+ * Clase TableroGalton.
+ * Representa al tablero o matriz que se utilizará como base para la simulación y cálculo de probabilidades.
+ */
 class TableroGalton {
   constructor(tamanno, numeroBolas, probDerecho = 0.5, probQuieto = 0.2) {
     this.tamanno = tamanno;
@@ -13,6 +29,9 @@ class TableroGalton {
     this.crearPelotas();
   }
 
+  /**
+   * Realiza una simulación completa del tablero, calculando las probabilidades de cada pelota y el resultado final.
+   */
   simular() {
     console.log([0, Math.floor((this.tamanno + Math.floor(this.tamanno / 1.15)) / 2)]);
     for(let i = 0; i < this.numBolas; i++) {
@@ -25,12 +44,18 @@ class TableroGalton {
     console.log("finish")
   }
 
+  /**
+   * Crea las pelotas que estarán en el tablero.
+   */
   crearPelotas() {
     for (let i = 0; i < this.numBolas; i++) {
       this.bolas.push(new Pelota(this, [0, Math.floor((this.tamanno + Math.floor(this.tamanno / 1.15)) / 2)], ("Bola " + i)));
     }
   }
 
+  /**
+   * Crea el tablero de la simulación.
+   */
   crearTablero() {
     for (let i = 0; i < this.tamanno; i++) {
       this.tablero.push([]);
@@ -40,6 +65,10 @@ class TableroGalton {
     }
   }
 
+  /**
+   * Crea los resultados de la simulación, considerando que el tamaño puede ser dinámico
+   * se deben guardar los resultados de cada espacio posible donde caiga la pelota.
+   */
   crearResultados() {
     for (let i = 0; i < this.tamanno + (Math.floor(this.tamanno / 1.15) + 1); i++) {
       console.log(i);
@@ -47,6 +76,9 @@ class TableroGalton {
     }
   }
 
+  /**
+   * Imprime el tablero generado.
+   */
   imprimirTablero() {
     let tablero = "";
     for (let i = 0; i < this.tamanno; i++) {
@@ -59,6 +91,11 @@ class TableroGalton {
   }
 }
 
+/**
+ * Clase Pelota.
+ * 
+ * Representa a una pelota que se moverá en el tablero.
+ */
 class Pelota {
   constructor(tablero, posicion, etiqueta) {
     this.tablero = tablero;
@@ -67,6 +104,10 @@ class Pelota {
     this.termino = false;
   }
 
+  /**
+   * Realiza un movimiento de la pelota en el tablero, considerando que la pelota puede caer en cualquier espacio
+   * del fondo del mismo.
+   */
   mover() {
     if (this.posicion[0] == this.tablero.tamanno - 1) {
       this.termino = true;
@@ -88,13 +129,3 @@ class Pelota {
     console.log("Pos: " + this.posicion);
   }
 }
-
-// let tab = new TableroGalton(11, 1000);
-// tab.imprimirTablero();
-// // console.log(Math.floor(tab.tamanno + Math.floor(tab.tamanno / 1.15) + 1) / 2);
-// // console.log(tab.bolas[0].posicion);
-// console.log(tab.resultados);
-// tab.simular();
-// console.log(tab.resultados);
-
-// Make 

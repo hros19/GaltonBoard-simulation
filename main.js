@@ -2,6 +2,10 @@ let canv = document.getElementById("board");
 let chart = null;
 let res;
 
+/**
+ * Función principal que ejecuta toda la simulación, mostrando además los resultados
+ * en un gráfico.
+ */
 function execute() {
   if (canv !== undefined) {  }
   let cantBolas = parseFloat(document.getElementById("cantBolas").value);
@@ -26,6 +30,9 @@ function execute() {
   createChart();
 }
 
+/**
+ * Crea el gráfico de barras con los resultados de la simulación.
+ */
 function createChart() {
   if (chart !== null) {
     chart.destroy();
